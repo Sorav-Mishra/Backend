@@ -41,16 +41,19 @@ app.put("/teas/:id", (req, res) => {
   const { name, price } = req.body;
   tea.name = name;
   tea.price = price;
+  res.status(200).send(tea);
 });
 
 // detele tea
-app.delete("delete/:id", (req, res) => {
+app.delete("teas/:id", (req, res) => {
   const index = teaData.findIndex((t) => t.id === parseInt(req.params.id));
+  console.log(index);
   if (index === -1) {
     return res.status(404).send("Not found");
   }
   teaData.splice(index, 1);
-  return res.status(205).send(teaData);
+  console.log(teaData);
+  return res.status(200).send(teaData);
 });
 
 app.listen(port, () => {
