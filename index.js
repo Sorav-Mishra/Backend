@@ -45,14 +45,13 @@ app.put("/teas/:id", (req, res) => {
 });
 
 // detele tea
-app.delete("teas/:id", (req, res) => {
+app.delete("/teas/:id", (req, res) => {
   const index = teaData.findIndex((t) => t.id === parseInt(req.params.id));
   console.log(index);
   if (index === -1) {
     return res.status(404).send("Not found");
   }
   teaData.splice(index, 1);
-  console.log(teaData);
   return res.status(200).send(teaData);
 });
 
